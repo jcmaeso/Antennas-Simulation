@@ -1,0 +1,30 @@
+CM 4 Tiers of : Circular Array of 3 half-wave, slant (45 Deg) Dipoles
+CM Array radius is 0.4 Lambda. Tier spacing 0.8 lambda. Freq = 300MHz
+CE 
+GW	1	9	0	-.2418	0	0	.2418	0	.0001
+GM	0	0	45	0	0	0	0	0	1
+GM	0	0	0	0	0	0.4	0	0	1
+GM	1	2	0	0	120	0	0	0	1
+GM	3	3	0	0	0	0	0	0.8	1
+GE 0	
+EX	0	1	5	0	1	0
+EX	0	2	5	0	1	0
+EX	0	3	5	0	1	0
+EX	0	4	5	0	1	0
+EX	0	5	5	0	1	0
+EX	0	6	5	0	1	0
+EX	0	7	5	0	1	0
+EX	0	8	5	0	1	0
+EX	0	9	5	0	1	0
+EX	0	10	5	0	1	0
+EX	0	11	5	0	1	0
+EX	0	12	5	0	1	0
+FR	0	1	0	0	300	0
+RP	0	181	1	1000	-180	0	2	1
+RP	0	181	1	1000	-180	45	2	1
+RP	0	181	1	1000	-180	90	2	1
+RP	0	1	181	1000	30	0	1	2
+RP	0	1	181	1000	60	0	1	2
+RP	0	1	181	1000	90	0	1	2
+EN	
+XQ

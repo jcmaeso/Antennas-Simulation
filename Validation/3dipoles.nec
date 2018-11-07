@@ -1,0 +1,20 @@
+CM Circular Array of 3 half-wave, slant (45 Deg) Dipoles
+CM Array radius is 0.4 Lambda. Freq = 300MHz
+CE
+GW	1	9	0	-.2418	0	0	.2418	0	.0001
+GM	0	0	45	0	0	0	0	0	1
+GM	0	0	0	0	0	0.4	0	0	1
+GM	1	2	0	0	120	0	0	0	1
+GE 0
+EX	0	1	5	0	1	0
+EX	0	2	5	0	1	0
+EX	0	3	5	0	1	0
+FR	0	1	0	0	300	0	
+RP	0	73	1	1000	-180	0	5	1
+RP	0	73	1	1000	-180	45	5	1
+RP	0	73	1	1000	-180	90	5	1
+RP	0	1	73	1000	30	0	1	5
+RP	0	1	73	1000	60	0	1	5
+RP	0	1	73	1000	90	0	1	5
+EN
+XQ

@@ -1,0 +1,18 @@
+CM NEC-WIN Example
+CM 2 half-wave dipoles 0.7m apart and rotated 25 Deg about Y-axis
+CM Optimized for resonance at 300 MHz
+CE 
+GW 1,11, -0.2418,0,0, 0.2418,0,0, .0001 
+GW 2,11, -0.2418,0.7,0, 0.2418,0.7,0, .0001 
+GM 0 0 0 -25 0 0 0 0 0 
+GS 0 0 1
+GE 0 
+GN -1 
+EX 0 1 6 00  1.00000  0.00000 
+EX 0 2 6 00 1.00000 0.00000 
+FR 0 0 0 0 300 0 
+RP 0  73 1 1000 -180 0 5 1 
+RP 0 73 1 1000 -180 45 5 1 
+RP 0 73 1 1000 -180 90 5 1 
+XQ
+EN

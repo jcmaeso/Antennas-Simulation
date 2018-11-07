@@ -1,0 +1,215 @@
+'
+'          6 element Dipole array over finite ground plane
+'
+' ********************* General parameters ****************************
+SY  Freq=1000			'Frequency in MHz
+SY lambda=3e8/(Freq*1e6)
+'
+' ******************* Groundplane parameters **************************
+'
+SY Ucs=0.1			'Unit Cell size (wavelengths)
+SY Ncx=7			'Number of cells in x-direction
+SY Ncy=39			'Number of cells in y-direction
+SY Gtgst=2000			'Tag Start
+SY Gwrad=0.001
+'
+' ******************* Diplole Element parameters ***********************
+'
+SY Ndip=6			'Number of dipole elements
+SY Dlen=0.5*0.93		'Dipole length (wavelengths)
+SY Dhgt=0.25			'Dipole height above g-plane (wavelengths)
+SY Dspc=0.65			'Dipole spacing (wavelengths)
+SY Dwrad=0.001
+'
+' **************** Physical geometery parameters ***********************
+'
+SY Ucsm=Ucs*lambda	' Unit Cell size (m)
+SY Dlenm=Dlen*lambda	' Dipole length (m)
+SY Dhgtm=Dhgt*lambda	' Dipole height (m)
+SY Dspcm=Dspc*lambda	' Diploe spacing (m)
+'
+' ****************** Feed Network  parameters **************************
+'
+' **** Tier element->1 ***
+SY Zt11=57.5		' Element match-1, impedance transformer for element 1 
+SY Lt11=lambda/4	' Impedance transformer length
+SY Zp11=50		' Impedance of Phase adjustment line 
+SY Lp11=0.001+(57.2/360)*lambda		' Length of Phase adjustment line
+'
+SY Zt12=62.3		' Element match-2, impedance transformer for element 2 
+SY Lt12=lambda/4	' Impedance transformer length
+SY Zp12=50		' Impedance of Phase adjustment line 
+SY Lp12=0.001+(117.8/360)*lambda	' Length of Phase adjustment line
+'
+SY Zt13=64.4		' Element match-3, impedance transformer for element 3 
+SY Lt13=lambda/4	' Impedance transformer length
+SY Zp13=50		' Impedance of Phase adjustment line 
+SY Lp13=2*lambda/4+(178.4/360)*lambda 	' Length of Phase adjustment line
+'
+SY Zt14=66.1		' Element match-4, impedance transformer for element 4 
+SY Lt14=lambda/4	' Impedance transformer length
+SY Zp14=50		' Impedance of Phase adjustment line 
+SY Lp14=2*lambda/4+(239.0/360)*lambda  	' Length of Phase adjustment line
+'
+SY Zt15=68.6		' Element match-5, impedance transformer for element 5 
+SY Lt15=lambda/4	' Impedance transformer length
+SY Zp15=50		' Impedance of Phase adjustment line 
+SY Lp15=0.001+(299.5/360)*lambda	' Length of Phase adjustment line
+'
+SY Zt16=72.8		' Element match-6, impedance transformer for element 6 
+SY Lt16=lambda/4	' Impedance transformer length
+SY Zp16=50		' Impedance of Phase adjustment line 
+SY Lp16=0.001+(000.0/360)*lambda	' Length of Phase adjustment line
+'
+'
+' *** Tier 2 ***
+SY Zt21=68.00	' Impedance transformer for outer elements (1) and (6) 
+SY Lt21=lambda/4	' Length of impedance transformer 
+SY Zt22=41.39	' Impedance transformer for inner elements (2) and (5)
+SY Lt22=lambda/4	' Length of impedance transformer
+'
+SY Zt3c2=35.36		' Impedance transformer for (1)comb(2) and (6)comb(5)
+SY Lt3c2=lambda/4	' Length of impdance transformer
+'
+' *** Tier 3 ***
+SY Zt31=51.54	' Impedance for outer branch elements (1&2) and (6&5)
+SY Lt31=lambda/4	' Length of impedance transformer 
+SY Zt32=48.59	' Impedance for inner elements (3) and (4)
+SY Lt32=lambda/4	' Length of impedance transformer
+'
+SY Zt3c4=35.36		' Impedance transformer for (1)comb(2) and (6)comb(5)
+SY Lt3c4=lambda/4	' Length of impdance transformer
+'
+' *** Tier 4 ***
+SY Zt41=50	' Main junction impedance transformer
+SY Lt41=0.001	' Length of impdance transformer
+'
+' *** Tier 5 ***
+SY Zt51=35.36	' Main input impedance transformer
+SY Lt51=lambda/4	' Length of impdance transformer
+'
+SY Ftgst1=511	' Start tag for 1st tier of transmission line nodes
+SY Ftgst2=521	' Start tag for 2nd tier of transmission line nodes
+SY Ftgst3=531	' Start tag for 3rd tier of transmission line nodes
+SY Ftgst4=541	' Start tag for 4th tier of transmission line nodes
+SY Ftgst5=551	' Start tag for 5th tier of transmission line nodes
+'
+SY Flen=lambda/30	' Length of transmission line node GW 
+SY Fgwrad=0.0001	' Wire radius for transmission line nodes (0.1mm)
+SY Ftlen=lambda/10	' Length of transmission lines on drawing
+'
+SY Fxn=(Ncx/2)*Ucsm	' X-position reference for all tiers of transmission line nodes
+'
+SY Fy1=(Dspcm/2)		' Y-position reference for 1st tier of transmission line nodes
+SY Fy2=(Dspcm/2)*2	' Y-position reference for 2nd tier of transmission line nodes
+SY Fy3=(Dspcm/2)*4	' Y-position reference for 3rd tier of transmission line nodes
+SY Fy4=(Dspcm/2)*6	' Y-position reference for 4th tier of transmission line nodes
+SY Fy5=(Dspcm/2)*6	' Y-position reference for 5th tier of transmission line nodes
+'
+SY Fz1=-1*(lambda/5)		' Z-height of 1st tier of transmission line nodes
+SY Fz2=-2*(lambda/5)		' Z-height of 2nd tier of transmission line nodes
+SY Fz3=-3*(lambda/5)		' Z-height of 3rd tier of transmission line nodes
+SY Fz4=-4*(lambda/5)		' Z-height of 4th tier of transmission line nodes
+SY Fz5=-5*(lambda/5)		' Z-height of 5th tier of transmission line nodes
+'
+'********************** Dipole Array start *****************************
+'
+GW	1	11	(Ncx/2)*Ucsm-(Dlenm/2)	(Dspcm/2)	Dhgtm	(Ncx/2)*Ucsm+(Dlenm/2)	(Dspcm/2)	Dhgtm	Dwrad	'1st Dipole
+GM	1	Ndip-1	0	0	0	0	Dspcm	0	1								'Replicate Dipoles
+'
+'********************** Transmission line node start *******************
+'
+'*** Tier1 ***
+GW	Ftgst1	1	Fxn	Fy1	Fz1	Fxn+Flen	Fy1	Fz1	Fgwrad
+GM	1	Ndip-1	0	0	0	0	Dspcm	0	Ftgst1
+'
+'*** Tier2 ***
+GW	Ftgst2+0	1	Fxn	Fy2-Fy1		Fz2	Fxn+Flen	Fy2-Fy1	Fz2	Fgwrad
+GW	Ftgst2+1	1	Fxn	Fy2		Fz2	Fxn+Flen	Fy2	Fz2	Fgwrad
+GW	Ftgst2+2	1	Fxn	Fy2+Fy1		Fz2	Fxn+Flen	Fy2+Fy1	Fz2	Fgwrad
+
+GW	Ftgst2+3	1	Fxn	Fy2+(Fy1*8)-Fy1		Fz2	Fxn+Flen	Fy2+(Fy1*8)-Fy1	Fz2	Fgwrad
+GW	Ftgst2+4	1	Fxn	Fy2+(Fy1*8)		Fz2	Fxn+Flen	Fy2+(Fy1*8)	Fz2	Fgwrad
+GW	Ftgst2+5	1	Fxn	Fy2+(Fy1*8)+Fy1		Fz2	Fxn+Flen	Fy2+(Fy1*8)+Fy1	Fz2	Fgwrad
+'
+'*** Tier3 ***
+GW	Ftgst3+0	1	Fxn	Fy3-Fy1		Fz3	Fxn+Flen	Fy3-Fy1	Fz3	Fgwrad
+GW	Ftgst3+1	1	Fxn	Fy3		Fz3	Fxn+Flen	Fy3	Fz3	Fgwrad
+GW	Ftgst3+2	1	Fxn	Fy3+Fy1		Fz3	Fxn+Flen	Fy3+Fy1	Fz3	Fgwrad
+
+GW	Ftgst3+3	1	Fxn	Fy3+(Fy1*4)-Fy1	Fz3	Fxn+Flen	Fy3+(Fy1*4)-Fy1	Fz3	Fgwrad
+GW	Ftgst3+4	1	Fxn	Fy3+(Fy1*4)	Fz3	Fxn+Flen	Fy3+(Fy1*4)	Fz3	Fgwrad
+GW	Ftgst3+5	1	Fxn	Fy3+(Fy1*4)+Fy1	Fz3	Fxn+Flen	Fy3+(Fy1*4)+Fy1	Fz3	Fgwrad
+'
+'*** Tier4 ***
+GW	Ftgst4+0	1	Fxn	Fy4-Fy1		Fz4	Fxn+Flen	Fy4-Fy1	Fz4	Fgwrad
+GW	Ftgst4+1	1	Fxn	Fy4		Fz4	Fxn+Flen	Fy4	Fz4	Fgwrad
+GW	Ftgst4+2	1	Fxn	Fy4+Fy1		Fz4	Fxn+Flen	Fy4+Fy1	Fz4	Fgwrad
+'
+'*** Tier5 ***
+GW	Ftgst5+0	1	Fxn	Fy5		Fz5	Fxn+Flen	Fy5	Fz5	Fgwrad
+'
+'
+' ********************* Ground plane start  **************************** 
+'
+GW	Gtgst	1	0	0	0	Ucsm	0	0	Gwrad						'Unit Cell X-GW
+GW	Gtgst+1	1	0	0	0	0	Ucsm	0	Gwrad					'Unit Cell Y-GW
+GM	2	Ncx-1	0	0	0	Ucsm	0	0	Gtgst						'X-Row of Unit Cells
+GM	2	Ncy-1	0	0	0	0	Ucsm	0	Gtgst						'Y-Rows of X-Row Unit Cells
+GW	Gtgst+2*Ncx*Ncy	1	Ncx*Ucsm	0	0	Ncx*Ucsm	Ucsm	0	Gwrad		'Y-GW Unit Cell closure at end of X-Row
+GM	1	Ncy-1	0	0	0	0	Ucsm	0	Gtgst+2*Ncx*Ncy				'Replicate Y-GW Unit Cell closure for all X-Rows
+GW	Gtgst+2*Ncx*Ncy+Ncy	1	0	Ncy*Ucsm	0	Ucsm	Ncy*Ucsm	0	Gwrad	'X-GW Unit Cell closure at end of Y-Row
+GM	1	Ncx-1	0	0	0	Ucsm	0	0	Gtgst+2*Ncx*Ncy+Ncy			'Replication of X-GW Unit Cell closure for all Y-Rows
+'
+'**************** Centre Array on axes *******************
+'
+GM	0	0	0	0	0	-(Ncx-1)*Ucsm/2	-(Ncy-1)*Ucsm/2	0	1		'Move whole structure
+GM	0	0	-90	0	-90	0	0	0	1
+'
+'************************ End of Geometry *********************
+GE	0
+GN	-1
+EK
+' *** Tier 1 ***
+TL	1	6	511	1	Zt11	Lt11	0	0	0	0
+TL	2	6	512	1	Zt12	Lt12	0	0	0	0
+TL	3	6	513	1	Zt13	Lt13	0	0	0	0
+TL	4	6	514	1	Zt14	Lt14	0	0	0	0
+TL	5	6	515	1	Zt15	Lt15	0	0	0	0
+TL	6	6	516	1	Zt16	Lt16	0	0	0	0
+' *** Phase ****
+TL	511	1	521	1	Zp11	Lp11	0	0	0	0
+TL	512	1	523	1	Zp12	Lp12	0	0	0	0
+TL	513	1	533	1	Zp13	Lp13	0	0	0	0
+TL	514	1	534	1	Zp13	Lp14	0	0	0	0
+TL	515	1	524	1	Zp12	Lp15	0	0	0	0
+TL	516	1	526	1	Zp11	Lp16	0	0	0	0
+'
+' *** Tier 2 ***
+TL	521	1	522	1	Zt21	Lt21	0	0	0	0
+TL	523	1	522	1	Zt22	Lt22	0	0	0	0
+TL	524	1	525	1	Zt22	Lt22	0	0	0	0
+TL	526	1	525	1	Zt21	Lt21	0	0	0	0
+' Conn 3->2
+TL	531	1	522	1	Zt3c2	Lt3c2	0	0	0	0
+TL	536	1	525	1	Zt3c2	Lt3c2	0	0	0	0
+'
+' *** Tier 3 ***
+TL	531	1	532	1	Zt31	Lt31	0	0	0	0
+TL	533	1	532	1	Zt32	Lt32	0	0	0	0
+TL	534	1	535	1	Zt32	Lt32	0	0	0	0
+TL	536	1	535	1	Zt31	Lt31	0	0	0	0
+' Conn 3->4
+TL	541	1	532	1	Zt3c4	Lt3c4	0	0	0	0
+TL	543	1	535	1	Zt3c4	Lt3c4	0	0	0	0
+
+' *** Tier 4 ***
+TL	541	1	542	1	Zt41	Lt41	0	0	0	0
+TL	543	1	542	1	Zt41	Lt41	0	0	0	0
+'
+' *** Tier 4 ***
+TL	542	1	551	1	Zt51	Lt51	0	0	0	0
+'
+EX	0	551	1	0	1	0
+FR	0	1	0	0	1000	0
+EN

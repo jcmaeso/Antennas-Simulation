@@ -1,0 +1,189 @@
+V1.0  - 1st version
+
+V1.1  - Minor typos in some comments corrected
+      - fieldsum.m added now includes 1/r path loss for pseudo-near field calcs see
+        help fieldsum. Old version still exists as fieldsum_old.m
+
+      - Problem with calc_theta.m and calc_phi.m using the normalise='yes' option
+        has been corrected. (String compare error rather than numeric)	
+
+V2.0  - Correction to unit vector re-normalisation in fieldsum.m, didn't affect results in
+        earlier version, just keeps internal calculations tidy.
+
+      - Re-organised some internal house-keeping by adding new directory element_indexing. 
+        Made adding new element models a bit easier.
+
+      - Added new aperture element models :
+        aprect  Rectangular aperture, uniform distribution
+        apcirc  Circular aperture, uniform distribution
+        wgr     Rectangular waveguide, TE10 distribution
+        wgc     Circular waveguide, TE11 distribution
+        dish    Parabolic dish aperture, adjustable amplitude taper
+
+      - list_array now has Real and Imag columns for element excitations 
+
+      - New directory beam_synthesis added :
+      - modtaylor.m    Outputs excitations for lin array given number of sources 
+                       and 1st sidelobe level required. (Modified Taylor Distribution)
+      - chebwin1.m     Outputs excitations for lin array given number of sources and
+                       level of all sidelobes. (Chebyshev distribution)
+
+
+      - Circular polarisation plotting is now possible LHCP, RHCP for all 2D/3D plots
+        and Axial Ratio for 3D plots.
+
+      - plot_pattern3d1 function added, same as plot_pattern3D except
+        with an additional parameter, figure number. 
+
+      -	New function cpol_array.m added. Circularly polarises an existing array
+        by duplicating array elements. Copied elements can be set to be orthogonal
+        in phase and orientation with respect to the originals. 
+
+      - n-bit quantisation for beam steering operations added. See squint_array.m 
+        function in the Geometry_Construction directory
+
+        Changes for V2.0 shouldn't affect any scripts written using the standard
+        V1.1 functions - all the original example and validation files still work OK. 
+
+V2.1  - More general tidying and corrections in help/comments, rather a lot actually, 
+        apologies for that.
+        X-axis label in some Phi plots corrected, was 'Theta' doh!
+
+      - functions plot_theta_statvar.m and plot_phi_statvar.m added to show the effect
+        of normally distributed variations in amplitude and phase excitations.
+
+
+   
+V2.2  - Potential divide by zero error in dipole models trapped, thanks to Jon for 
+        spotting this.
+ 
+      - Binomial amplitude distribution added to beam_synthesis directory
+        see exdist.m for comparisons with other distributions.
+
+      - 3D pattern routine re-written, there was a dynamic range problem 
+        (colour scale itself was OK) when using very small elements 
+        (e.g. lambda/20 dipole). Hopefully it is easier to follow and generally 
+        more robust now. Functionally, there is no change.
+
+      - Examples added showing the use of small elements to model current/field
+        distributions on wires/apertures. exloop.m and exap1.m
+
+      - Example showing large aperture application (2-dish interferometer) and 
+        identifying upper limit for apperture size that ArrayCalc can cope with.
+        Max aperture approx 1000 Lambda. See exinter.m
+      
+      - Error in place_element.m corrected, text output reported to screen was 
+        angle information rather than position. 
+
+V2.3  - plot_theta/phi_statvar help files corrected (normalisation options should
+        have been 'yes' or 'no').  
+
+      - sumcode.m help corrected, too much cut and paste.
+
+      - Examples moved to separate 'Examples' directory, display list by typing 'exlist'
+        Comments in examples and various other files added to and tidied up.
+
+      - Fourier beam synthesis added, fourier1.m together with examples exfourier1/2/3.m
+
+V2.4  - Potential divide by zero warning trapped in rectangular patch model.
+        
+      - The dB power value returned by modtaylor function corrected, error did not affect
+        internal calculations as these use linear volts.  
+      
+      - The taywin_array function changed slightly, gives sidelobes closer to the requested
+        value for arrays with regular spacing.
+         
+      - Fieldsum modified very slightly, the sign of the circular polarisation flag 
+        now determines the hand of polarisation: CPflag=1 (RHCP) and CPflag=-1 (LHCP) 
+        Only affects inherently circularly polarised helements, currently only the helix.
+
+      - New plotting function plot_geopat3D added, plots 3D pattern and array 
+        geometry on the same plot.
+
+      - New plotting functions plot_theta_geo1 and plot_phi_geo1 added, for adding single
+        pattern cuts to the 3D geometry plot.
+
+      - The functions plot_theta, plot_phi, plot_squint_theta and plot_squint_phi now
+        add pattern cuts to the 3D geometry plot in figure1 by default. This should
+        help identify the requested plots.
+  
+      - Thanks to Piro for spotting some problems with the Taylor distribution and suggestions
+        for improvements.
+
+      - User manual now included with documention. New directory added for the documentation.
+
+      - Some new example files added.
+
+
+
+        Minor post 2.4 release changes.
+
+      - File interp.m renamed to interpl.m to avoid potential conflict with interp.m as
+        defined in the Mathworks Signal Processing Toolbox. Reference to 'interp' in
+        SUMCODE.m also changed to 'interpl'.(Should correct problems with running Ex3a/b)
+
+      - File interp_geom.m modified to display sub-array geometry.
+
+      - ExTestSUB1 and ExTestSUB2 examples added to show the use of sub-arrays.
+
+      - ExParab and Exparabpol added to illustrate simplified modelling of reflectors.
+
+ 
+V2.4.1 - All file names changed to lower case to avoid case-sensitive issues with newer
+         versions of Matlab
+
+         Least Mean Square optimisation added to Beam_synthesis, together with example exlms1  
+     
+         Extra information on phased array and phase shifter design added to documentation
+
+
+
+V2.4.2 - I found a problem with statistcal variation functions plot_theta_statvar and 
+         plot_phi_statvar. The random errors were not being applied to all array elements. 
+         I think a line of code got moved during testing and I didn't move it back afterwards.
+         Apologies for any confusion / inconvenience caused.
+
+
+
+V2.5   - Upper case function references in example files removed, should help with case sensitivity issues.
+         Tau (tilt of polarisation ellipse) and Phase of Total, VP and HP E-field plot options added to 3D
+         plots.
+
+       - function place_element changed so rotations are about fixed X,Y,Z axes. Hopefully making it
+         easier to use.
+         
+
+       - Nearfield visualisation/analysis functions added, see below.
+
+         Plot_field_slice function to plot E-field parameters as a slice in 3D space.
+         Plot_wave_slice function to add 3D wave surface to the 3D geometry plot, if present.
+         Plot_wave_anim function to animate the 3D wave surface.
+
+       - Global variables for efficiency, input power and impedance have been added (arrayeff_config, 
+         arraypwr_config & impedance_config), allowing absolute field values to be calculated 
+         (V/m and W/m^2) and farfield plots of Gain. Although the efficiency is an arbitrary
+         value supplied by the user, two other functions are included to estimate patch element
+         efficiency (calc_patchr_eff & calc_patchc_eff). For array calculations the array hes to be
+         normalised first, a function norm_array has beed added for this.
+
+      -  Examples added : exdoubleslit, exoam1/2/3, excoverage, exanim1/2/3, expointsrce1, excoverage,
+                          exdipoles, extotpower, exrtpslice and exultrason1/2/3 added. 
+
+                          Sub-array examples extestsub1/2/3 re-organised to improve visualisation.
+
+                          Validation example verify_elepat added to plot element model patterns in 
+                          linear form. See file for test configurations. 
+
+                          Validation examples against Ansoft Designer added ef1/2..7 and ef1_4element
+
+       - Element models now use velocity_config instead of fixed 3e8 m/s. This probably should have
+         done from the beginning, but I wasn't sure how applicable the models were for other applications
+         like ultrasound. This means that the ArrayCalc element models should now work in any homogenous
+         medium where the velocity of propagation is known. Obviously some careful thought has to be given
+         to which models are suitable, the circular and rectangular apertures are fairly generic.
+         See exultrason1/2/3 examples.
+
+       - Document : "What's new in ArrayCalc v2.5" added to Documentation directory.
+	 Document : "Orbital Angular Momentum" added to Additional Documentation directory.
+         
+          

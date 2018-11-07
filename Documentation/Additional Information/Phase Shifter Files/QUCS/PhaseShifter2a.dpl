@@ -1,0 +1,52 @@
+<Qucs Schematic 0.0.14>
+<Properties>
+  <View=10,0,805,718,0.818942,0,6>
+  <Grid=10,10,0>
+  <DataSet=PhaseShifter2a.dat>
+  <DataDisplay=PhaseShifter2a.sch>
+  <OpenDisplay=1>
+  <showFrame=0>
+  <FrameText0=Title>
+  <FrameText1=Drawn By:>
+  <FrameText2=Date:>
+  <FrameText3=Revision:>
+</Properties>
+<Symbol>
+</Symbol>
+<Components>
+</Components>
+<Wires>
+</Wires>
+<Diagrams>
+  <Rect 110 250 240 160 3 #c0c0c0 1 00 1 0 5e+08 3e+09 0 -40 5 0 1 -1 1 1 315 0 225 "" "" "">
+	<"S11dB" #0000ff 0 3 0 0 0>
+  </Rect>
+  <Tab 435 140 160 50 3 #c0c0c0 1 00 1 0 1 1 1 0 1 1 1 0 1 9 315 0 225 "" "" "">
+	<"RotAngle" #0000ff 0 3 0 0 0>
+  </Tab>
+  <Tab 435 200 160 50 3 #c0c0c0 1 00 1 0 1 1 1 0 1 1 1 0 1 1 315 0 225 "" "" "">
+	<"MinRadMM" #0000ff 0 3 0 0 0>
+  </Tab>
+  <Tab 435 260 330 49 3 #c0c0c0 1 00 1 0 1 1 1 0 1 1 1 0 1 1 315 0 225 "" "" "">
+	<"TrkWidthAMM" #0000ff 0 3 0 0 0>
+	<"TrkWidthBMM" #0000ff 0 3 0 0 0>
+  </Tab>
+  <Tab 435 320 160 50 3 #c0c0c0 1 00 1 0 1 1 1 0 1 1 1 0 1 1 315 0 225 "" "" "">
+	<"CenSepMM" #0000ff 0 3 1 0 0>
+  </Tab>
+  <Tab 605 320 160 50 3 #c0c0c0 1 00 1 0 1 1 1 0 1 1 1 0 1 1 315 0 225 "" "" "">
+	<"MaxDiamMM" #0000ff 0 3 0 0 0>
+  </Tab>
+  <Rect 450 560 240 160 3 #c0c0c0 1 00 1 0 5e+08 3e+09 0 -1 0.2 0 1 -1 1 1 315 0 225 "" "" "">
+	<"S21dB" #0000ff 0 3 0 0 0>
+  </Rect>
+  <Rect 110 560 240 160 3 #c0c0c0 1 00 1 0 5e+08 3e+09 0 -180 45 180 1 -1 1 1 315 0 225 "" "" "">
+	<"S21RelPhase" #0000ff 0 3 0 0 0>
+	  <Mkr 2.449e+09/60 -3 55 3 0 0>
+  </Rect>
+</Diagrams>
+<Paintings>
+  <Text 50 350 10 #000000 0 "Phase shift (rel to RotAngle=0 setting) Vs Frequency\n                 for swept RotAngles 0 to 60">
+  <Text 480 350 10 #000000 0 "Insertion Loss Vs Frequency\nfor swept RotAngles 0 to 60">
+  <Text 140 40 10 #000000 0 "Input Return Loss Vs Frequency\n   for swept RotAngles 0 to 60">
+</Paintings>

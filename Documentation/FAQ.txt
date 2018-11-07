@@ -1,0 +1,148 @@
+FAQs for ArrayCalc V2.5
+
+A quick summary of some of the questions you may have
+about ArrayCalc.
+
+
+If you other questions feel free to email me : activefrance@orange.fr  
+                                 Use Subject : ArrayCalc
+             
+
+
+Q Is there, or is there going to be a GUI?
+
+A The short answer is no. Why, because the amount of code
+  required to have a really useable GUI is just too much, 
+  and it makes it much harder for users to read/modify the
+  code. The aim of ArrayCalc was to be a useful tool but
+  also a learning aid, think Meccano rather than PlayStation. 
+  
+
+
+Q Can ArrayCalc handle sub-arrays?
+  
+A Yes, to some extent. The technique involves using ArrayCalc
+  to define the data for an 'interp' element, as used in ex3b.
+  The 'interp' element is then the sub-array and can be used 
+  as an array element in its own right. 
+  See ExTestSub1/2/3.
+
+
+
+Q Does ArrayCalc use the Ludwig3 convention?
+
+A Not as standard although it can be modified to do so. Ludwig3
+  usually crops up during practical antenna measurements when
+  it is necessary to polarisation match Tx and Rx antennas. 
+  
+
+
+Q Why does ArrayCalc slow up so much with large arrays?
+
+A The Matlab code has been written to be as 'readable'
+  as possible, using nested for..next loops etc. Unfortunately
+  this approach is not always consistent with speed of execution.
+  To make things run quickly in Matlab usually means organising
+  as many calculations as possible to be matrix operations. 
+  The problem is that it can make the code very difficult to 
+  read/follow and indeed write!
+
+  Remember, in ArrayCalc the time taken to generate the plots is 
+  directly proportional to the amount of information requested. 
+  So, do you really need a full 3D plot every time or will a 
+  few carefully chosen 2D patterns do?
+
+  For arrays in the 100s of elements it might be better to look
+  at aperture based Fourier transform methods. Or, hard-coding the 
+  problem in a compiled language such as C or Fortran, the old
+  horses for courses issue I'm afraid.
+
+
+Q I'm not getting the directivity values I was expecting?
+
+A Make sure the d(theta) , d(phi) values are sampling the 3D pattern
+  at sufficient resolution to resolve all the main features. It is
+  the same idea as digitising an analogue signal i.e. at least twice
+  the most rapidly varying component. In an antenna pattern this is
+  angular separation of the sidelobes. 
+
+
+Q Why do I get odd phase flips when I plot phase information?
+
+A In array patterns it is normal to get phase reversals between
+  sidelobes i.e. at the nulls. However, to avoid spurious 'flips'
+  due to the resolution of the pattern into VP and HP components,
+  it is best avoid patterns that look end-on to the resolved 
+  components : 
+
+  VP is parallel to the global z-axis
+  HP is parallel to the global y-axis.
+
+  It is therefore best to arrange the nominal propagation direction
+  of the array to be parallel to the global x-axis, so the VP and HP
+  vectors are viewed side-on.
+
+
+Q Can I use ArrayCalc for ultrasound?
+
+A Yes, to some extent. In V2.5 the wave velocity variable 
+  velocity_config is now used in all the element models as opposed
+  to a fixed value of 3e8 m/s. Not all element models are suitable,
+  but the circular and rectangular apertures are fairly generic.
+  See examples exultrason1/2/3 and "What's new in ArrayCalc v2.5"
+  in the documentation directory for more information.
+
+
+Q Can I save the animations produced by plot_wave_anim.m as animated GIFs?
+
+A Not directly, Matlab5.1 does not support the necessary image file
+  save formats. However individual frames can be saved and animated
+  using free 3rd party software. See plot_wave_anim help for more
+  details. See also the Animated GIFs sub-directory in the documentation
+  for examples.
+
+
+Q What are the dbloss and dblossd options in the near-field plot options?
+
+A The dbloss option is path loss in dB multiplied by the array or element
+  pattern. All element patterns are normalised to unity, the array
+  pattern may or may not be normalised, depending on whether the normalise
+  option has been selected in the plot command. 
+
+     The calculation is : 20*log10((lambda/(4*pi*R))*Pattern(theta,phi)). 
+
+  For an isotropic source (unit sphere pattern) dbloss is just path loss as
+  a function of R. The dblossd is just dbloss plus the calculated directivity.
+ 
+   
+Q Why I get lots of warning messages, particularly concerning shading of
+  3D graphs?
+
+A It is something that is quite variable between Matlab versions, usually 
+  when the shading type is changed on a 3D plot. Especially one which has 
+  had lots of other features added to it, other than a 3D surface. The extra
+  lines and text on the plots make plot much more useful, so although not 
+  ideal, I just use the 'warning off' command and let Matlab grumble away 
+  to itself.
+
+
+Q Why do I get messages : 'Warning: Unrecognized OpenGL version, defaulting to 1.0.'?
+
+A There might be an issue with OpenGL support on your machine.
+  In later versions of Matlab (V6 on) try putting 'opengl neverselect'
+  in the init.m file, the default setting is 'autoselect' and earlier versions
+  of Matlab (V5) don't support OpenGl. 
+
+
+Q Why do I get odd errors with some, but not all example files?
+
+A There is possibly a command conflict with another
+  Matlab command, most likely in another toolbox. 
+      
+  Type help 'offending command' and check the help information
+  against that listed in the commands section of the user Guide.
+
+  Toolboxes that may cause conflicts : Control System
+                                       RF Toolbox
+                                       Robust Control
+                                       System Control
